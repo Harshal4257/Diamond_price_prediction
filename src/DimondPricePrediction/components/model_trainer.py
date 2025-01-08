@@ -3,5 +3,5 @@ class ModelTrainer:
     def __init__(self):
         pass
     
-    def initialize_model_trainer(self):
+    def initiate_model_trainer(self):
         pass

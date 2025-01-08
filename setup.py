@@ -15,7 +15,7 @@ def get_requirements(file_path:str)->List[str]:
     return requirements"""
 
 setup(
-    name='DimondPricePrediction',
+    name='Dimondpriceprediction',
     version='0.0.1',
     author='Harshal Patil',
     author_email='harshalpatil8482@gmail.com',
