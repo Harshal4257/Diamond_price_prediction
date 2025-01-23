@@ -23,6 +23,7 @@ class PredictPipeline:
             
             return pred
         except Exception as e:
+            logging.info("Error occured at predict method")
             raise customexception(e,sys)
         
 class CustomData:
@@ -67,3 +68,4 @@ class CustomData:
             logging.info("Error occured at prediction pipiline")
             raise customexception(e,sys)
         
+ 
