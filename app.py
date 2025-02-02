@@ -1,3 +1,12 @@
+import sys
+import os
+
+# Print the Python path for debugging
+print("Python Path:", sys.path)
+
+# Ensure the src directory is in the Python path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
+
 from flask import Flask,render_template,request,jsonify
 from src.Dimondpriceprediction.pipelines.prediction_pipeline import CustomData,PredictPipeline
 
