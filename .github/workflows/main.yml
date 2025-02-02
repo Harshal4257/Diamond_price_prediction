@@ -35,8 +35,8 @@ jobs:
 
       - name: Create ECR Repository (if it does not exist)
         run: |
-          aws ecr describe-repositories --repository-names diamondpriceprediction || \
-          aws ecr create-repository --repository-name diamondpriceprediction
+          aws ecr describe-repositories --repository-names dimondpriceprediction || \
+          aws ecr create-repository --repository-name dimondpriceprediction
 
       - name: Build, tag, and push image to Amazon ECR
         env:
