@@ -1,7 +1,7 @@
 pandas 
 numpy
 scikit-learn
-ipykernal==6.29.5
+ipykernel
 Flask
 
 -e .
