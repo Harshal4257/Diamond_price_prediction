@@ -8,7 +8,7 @@ print("Python Path:", sys.path)
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
 
 from flask import Flask,render_template,request,jsonify
-from src.Dimondpriceprediction.pipelines.prediction_pipeline import CustomData,PredictPipeline
+#from src.Dimondpriceprediction.pipelines.prediction_pipeline import CustomData,PredictPipeline
 
 app = Flask(__name__)
 
