@@ -20,7 +20,7 @@ jobs:
           sudo apt-get install -y jq unzip
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2  # Updated to v2
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -44,5 +44,7 @@ jobs:
           ECR_REPOSITORY: dimondpriceprediction
           IMAGE_TAG: latest
         run: |
+          # Build Docker image with the context being the current directory (or specify the right directory)
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          # Push the Docker image to Amazon ECR
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
