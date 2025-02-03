@@ -1,7 +1,6 @@
-import importlib
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
 
-try:
-    module = importlib.import_module('src.Dimondpriceprediction.pipelines.prediction_pipeline')
-    print("Module loaded successfully!")
-except ModuleNotFoundError as e:
-    print(f"Error: {e}")
+from Dimondpriceprediction.logger import logging
+logging.info("Hello world")
