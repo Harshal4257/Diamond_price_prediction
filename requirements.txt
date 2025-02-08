@@ -7,4 +7,5 @@ pandas-profiling
 flask
 mlflow
 dvc
+
 -e .
