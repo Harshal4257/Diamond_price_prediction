@@ -3,11 +3,15 @@ import numpy as np
 import pandas as pd
 import pickle
 import mlflow
+import dagshub
 
 from src.Dimondpriceprediction.logger import logging
 from src.Dimondpriceprediction.exception import customexception
 from src.Dimondpriceprediction.utils.utils import load_object
 from sklearn.metrics import r2_score,mean_absolute_error,mean_squared_error
+
+              
+
 
 class ModelEvaluatuion:
     def __init__(self):
@@ -27,6 +31,9 @@ class ModelEvaluatuion:
             model_path = os.path.join("artifacts","model.pkl")
             model = load_object(model_path)
             
+            dagshub.init(repo_owner='harshal_42',
+             repo_name='Diamond_price_prediction',
+             mlflow=True)
             mlflow.set_registry_uri("https://dagshub.com/Harshal_42/Diamond_price_prediction.mlflow")
             
             with mlflow.start_run():
