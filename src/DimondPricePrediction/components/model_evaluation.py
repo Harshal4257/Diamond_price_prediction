@@ -27,6 +27,8 @@ class ModelEvaluatuion:
             model_path = os.path.join("artifacts","model.pkl")
             model = load_object(model_path)
             
+            mlflow.set_registry_uri("https://dagshub.com/Harshal_42/Diamond_price_prediction.mlflow")
+            
             with mlflow.start_run():
                 y_pred = model.predict(x_test)
                 (rmse,mae,r2) = self.eval_metric(y_test,y_pred)
