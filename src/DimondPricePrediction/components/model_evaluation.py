@@ -3,16 +3,15 @@ import numpy as np
 import pandas as pd
 import pickle
 import mlflow
-import dagshub
+import mlflow.sklearn
 
+from urllib.parse import urlparse
 from src.Dimondpriceprediction.logger import logging
 from src.Dimondpriceprediction.exception import customexception
 from src.Dimondpriceprediction.utils.utils import load_object
 from sklearn.metrics import r2_score,mean_absolute_error,mean_squared_error
 
               
-
-
 class ModelEvaluatuion:
     def __init__(self):
         pass
@@ -31,10 +30,12 @@ class ModelEvaluatuion:
             model_path = os.path.join("artifacts","model.pkl")
             model = load_object(model_path)
             
-            dagshub.init(repo_owner='harshal_42',
-             repo_name='Diamond_price_prediction',
-             mlflow=True)
+            
+            
             mlflow.set_registry_uri("https://dagshub.com/Harshal_42/Diamond_price_prediction.mlflow")
+            tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
+            print(tracking_url_type_store)
+            
             
             with mlflow.start_run():
                 y_pred = model.predict(x_test)
@@ -43,6 +44,11 @@ class ModelEvaluatuion:
                 mlflow.log_metric("RMSE",rmse)
                 mlflow.log_metric("MAE",mae)
                 mlflow.log_metric("R2",r2)
+                
+                if tracking_url_type_store != "file":
+                    mlflow.sklearn.log_model(model, "model", registered_model_name="ml_model")
+                else:
+                    mlflow.sklearn.log_model(model, "model")
                     
         except Exception as e:
             raise customexception(e,sys)
